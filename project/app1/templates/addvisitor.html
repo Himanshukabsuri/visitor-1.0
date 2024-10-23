@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block title %} ADD Visitor {% endblock %}
+    <link rel="stylesheet" href="{% static 'assets/css/addvisitor.css' %}">
+</head>
+<body>
+    {% block content %}
+    <div class="form-container">
+        <h2>Add Visitor</h2>
+        <form action="/add-visitor" method="POST">
+            <div class="form-group">
+                <label for="visitorName">Name</label>
+                <input type="text" id="visitorName" name="visitorName" required>
+            </div>
+            <div class="form-group">
+                <label for="visitorEmail">Email</label>
+                <input type="email" id="visitorEmail" name="visitorEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="visitorPhone">Phone</label>
+                <input type="tel" id="visitorPhone" name="visitorPhone" required>
+            </div>
+            <div class="form-group">
+                <label for="visitDate">Visit Date</label>
+                <input type="date" id="visitDate" name="visitDate" required>
+            </div>
+            <div class="form-group">
+                <label for="purpose">Purpose of Visit</label>
+                <textarea id="purpose" name="purpose" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit">Add Visitor</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}

@@ -50,15 +50,16 @@
 
                     <p class="fs-13 fw-semibold">Or Login With Email</p>
 
-                    <form action="https://coderthemes.com/osen/layouts/index.html" class="text-start mb-3">
+                    <form action="" method="POST" class="text-start mb-3">
+                        {% csrf_token %}
                         <div class="mb-3">
-                            <label class="form-label" for="example-email">Email</label>
-                            <input type="email" id="example-email" name="example-email" class="form-control" placeholder="Enter your email">
+                            <label class="form-label" for="example-name">Name</label>
+                            <input type="name" id="example-email" name="name" class="form-control" placeholder="Enter your username">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label" for="example-password">Password</label>
-                            <input type="password" id="example-password" class="form-control" placeholder="Enter your password">
+                            <input type="password" id="example-password" class="form-control" placeholder="Enter your password" name="password">
                         </div>
 
                         <div class="d-flex justify-content-between mb-3">
@@ -75,7 +76,7 @@
                         </div>
                     </form>
 
-                    <p class="text-danger fs-14 mb-4">Don't have an account? <a href="auth-register.html" class="fw-semibold text-dark ms-1">Sign Up !</a></p>
+                    <p class="text-danger fs-14 mb-4">Don't have an account? <a href="{% url 'Register' %}" class="fw-semibold text-dark ms-1">Sign Up !</a></p>
 
                     <p class="mt-auto mb-0">
                         <script>document.write(new Date().getFullYear())</script> © Osen - By <span class="fw-bold text-decoration-underline text-uppercase text-reset fs-12">Coderthemes</span>
