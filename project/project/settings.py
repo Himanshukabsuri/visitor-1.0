@@ -125,15 +125,3 @@ STATIC_ROOT=os.path.join(BASE_DIR,"static")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# Looking to send emails in production? Check out our Email API/SMTP product!
-# EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
-# EMAIL_HOST_USER = '2992631c0246af'
-# EMAIL_HOST_PASSWORD = '60f1ed1060a0ce'
-# EMAIL_PORT = '2525'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'sagarthapliyal9720@gmail.com'
-EMAIL_HOST_PASSWORD = 'tzel qsye bhkr ersq'
-EMAIL_PORT = '587'
-EMAIL_USE_SSL=False
