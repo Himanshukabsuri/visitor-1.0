@@ -19,7 +19,7 @@ class Visitor(models.Model):
     discription=models.CharField(max_length=1000,default="a")
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES,default='M')
     status=models.CharField(max_length=20,choices=status_choices,default='check-in')
-    ctime = models.DateTimeField(auto_now=True, null=True, blank=True)
+    ctime = models.DateTimeField(auto_now=True,  null=True, blank=True,auto_created=True)
 
 
     def __str__(self):

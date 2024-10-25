@@ -113,7 +113,14 @@
                                     </td>
                                     {% comment %} <small class="text-muted">11:15 AM</small> {% endcomment %}
                                     <td>{{todayvisitors.date}} </td>
-                                    <td>--</td>
+                                    {% if todayvisitors.status == 'check-out' %}
+                                    <td>{{ todayvisitors.ctime }}</td>
+                                
+                                 {% else %} 
+                                 <td>  --  </td>
+                                 {% endif %}
+                                
+                                
                                     <td>
                                         <a href="{% url 'st' todayvisitors.id %}" class="link-reset fw-medium">{{todayvisitors.status}}</a>
                                     </td>
