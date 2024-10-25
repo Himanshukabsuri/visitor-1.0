@@ -38,7 +38,7 @@
                                 {% comment %} <small class="text-muted">11:15 AM</small> {% endcomment %}
                                 <td>{{visitor.date}} </td>
                                 <td>
-                                    <a href="#javascript: void(0);" class="link-reset fw-medium">check In</a>
+                                    <a href="#javascript: void(0);" class="link-reset fw-medium">{{visitor.status}}</a>
                                 </td>
                                 <td><span class="badge bg-success-subtle text-success p-1">Completed</span></td>
                                 <td>
@@ -54,9 +54,7 @@
                 <div class="card-footer">
                     <div class="align-items-center justify-content-between row text-center text-sm-start">
                         <div class="col-sm">
-                            <div class="text-muted">
-                                Showing <span class="fw-semibold">7</span> of <span class="fw-semibold">1,243</span> Results
-                            </div>
+                          
                         </div>
                         <div class="col-sm-auto mt-3 mt-sm-0">
                             <ul class="pagination pagination-boxed pagination-sm mb-0 justify-content-center">

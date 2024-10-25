@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login,authenticate
 from django.core.mail import send_mail
 from .models import Visitor
+from django.utils import timezone
+from django.views.decorators.http import require_POST
 
 def loginPage(request):
     if request.method=="POST":
@@ -23,17 +25,19 @@ def dashboardPage(request):
 
 
 def addvisitor(request):
+    today=timezone.now().date()
+    todayvisitor=Visitor.objects.filter(date=today)
     if request.method == "POST":
         name = request.POST.get("name")
         email = request.POST.get("email")
         phone = request.POST.get("phone")
-        date = request.POST.get("date")
+        discriptions=request.POST.get("Discriptions")
         gender = request.POST.get("gender")
-        visitor = Visitor(name=name, email=email, phone=phone, date=date, gender=gender)
+        visitor = Visitor(name=name, email=email, phone=phone, discription=discriptions, gender=gender)
         visitor.save()
         return redirect("visitorlist")
 
-    return render(request, 'addvisitor.html')
+    return render(request, 'addvisitor.html',{'todayvisitor':todayvisitor})
 
 
 def visitorlist(request):

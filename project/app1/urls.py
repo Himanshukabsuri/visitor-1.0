@@ -8,6 +8,7 @@ urlpatterns = [
     
     path('visitorlist/',views.visitorlist,name="visitorlist"),
     path('addvisitor/',views.addvisitor,name="addvisitor"),
-   path('update/<int:id>/', views.Editvisitor, name="editvisitor")
+   path('update/<int:id>/', views.Editvisitor, name="editvisitor"),
+   
 
 ]
