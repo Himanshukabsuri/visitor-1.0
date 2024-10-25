@@ -72,9 +72,9 @@
                     </li>
 
                     <li class="side-nav-item">
-                        <a href="dashboard-clinic.html" class="side-nav-link">
+                        <a href="{% url 'addvisitor' %}" class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-building-hospital"></i></span>
-                            <span class="menu-text"><a href="{% url 'addvisitor' %}"> AddNew Visitor</a> </span>
+                            <span class="menu-text"> AddNew Visitor </span>
                         </a>
                     </li>
 
@@ -93,9 +93,9 @@
                   
 
                     <li class="side-nav-item">
-                        <a href="apps-chat.html" class="side-nav-link">
+                        <a href="{% url 'visitorlist' %}" class="side-nav-link">
                             <span class="menu-icon"><i class="ti ti-message"></i></span>
-                            <span class="menu-text"> <a href="{% url 'visitorlist' %}">Visitor List </a> </span>
+                            <span class="menu-text"> Visitor List </span>
                         </a>
                     </li>
 
