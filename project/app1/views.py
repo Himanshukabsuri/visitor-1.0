@@ -35,7 +35,9 @@ def addvisitor(request):
         gender = request.POST.get("gender")
         visitor = Visitor(name=name, email=email, phone=phone, discription=discriptions, gender=gender)
         visitor.save()
-        return redirect("visitorlist")
+        
+        return redirect("addvisitor")
+        
 
     return render(request, 'addvisitor.html',{'todayvisitor':todayvisitor})
 
@@ -55,3 +57,14 @@ def Editvisitor(request,id):
         visitor.gender = request.POST.get("gender")
         visitor.save()
     return render(request,'update.html',{'visitor':visitor})
+
+def  st(request,id):
+    visitor=Visitor.objects.get(id=id)
+    
+    # print(visitor.status)
+    if visitor.status=='check-in':
+        visitor.status="check-out"
+        
+    visitor.save()
+    
+    return redirect('addvisitor')

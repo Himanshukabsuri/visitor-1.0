@@ -50,11 +50,6 @@
               <option value="O">Other</option>
             </select>
           </div>
-          <div>
-            {% for todayvisitors in todayvisitor %}
-            {{todayvisitors.name}}
-             {% endfor %}
-          </div>
         <div class="mb-2">
           <button type="submit" class="btn btn-primary">ADD</button>
 
@@ -99,6 +94,7 @@
                                     
                                     <th class="text-muted">PHONE</th>
                                     <th class="text-muted">Date / Time</th>
+                                    <th class="text-muted">Check-Out</th>
                                     {% comment %} <th class="text-muted">Assign Dr.</th> {% endcomment %}
                                     <th class="text-muted">Status</th>
                                     
@@ -117,8 +113,9 @@
                                     </td>
                                     {% comment %} <small class="text-muted">11:15 AM</small> {% endcomment %}
                                     <td>{{todayvisitors.date}} </td>
+                                    <td>--</td>
                                     <td>
-                                        <a href="#javascript: void(0);" class="link-reset fw-medium">{{todayvisitors.status}}</a>
+                                        <a href="{% url 'st' todayvisitors.id %}" class="link-reset fw-medium">{{todayvisitors.status}}</a>
                                     </td>
                                     
                                     
