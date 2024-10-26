@@ -5,6 +5,8 @@ from django.core.mail import send_mail
 from .models import Visitor
 from django.utils import timezone
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
+
 
 def loginPage(request):
     if request.method=="POST":
@@ -17,13 +19,12 @@ def loginPage(request):
         else:
             return HttpResponse("enter the vaild password or email")
     return render(request,'login.html')
-
-  
+@login_required
 def dashboardPage(request):
     return render(request,'base.html')
 
 
-
+@login_required
 def addvisitor(request):
     today=timezone.now().date()
     todayvisitor=Visitor.objects.filter(date=today)

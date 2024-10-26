@@ -27,8 +27,9 @@
                         </thead>
                         <tbody>
                             {% for visitor in visitors %}
+                            
                             <tr>
-                                <td>{{visitor.id}}</td>
+                                <td>{{ forloop.counter}}</td>
                                 <td><a href="#" class="link-reset fw-medium">{{visitor.name}}</a></td>
                                 <td>{{visitor.gender}}</td>
                                 <td>{{visitor.email}}</td>
