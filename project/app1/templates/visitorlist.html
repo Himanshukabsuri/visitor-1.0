@@ -51,7 +51,8 @@
                                         {% endif %}
                                     </td>
                                     <td>
-                                        <a href="{% url 'st' visitor.id %}" class="link-reset fw-medium">{{ visitor.status }}</a>
+                                        <button class="btn btn-danger" ><a href="{% url 'st' visitor.id %}" class="link-reset fw-medium">{{ visitor.status }}</a></button>
+                                        
                                     </td>
                                     <td><span class="badge bg-success-subtle text-success p-1">Completed</span></td>
                                     <td>

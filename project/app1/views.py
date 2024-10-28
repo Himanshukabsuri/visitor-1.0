@@ -1,6 +1,6 @@
 from django.shortcuts import render,HttpResponse,redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import login,authenticate
+from django.contrib.auth import login,authenticate,logout
 from django.core.mail import send_mail
 from .models import Visitor
 from django.utils import timezone
@@ -25,6 +25,11 @@ def loginPage(request):
 @login_required
 def dashboardPage(request):
     return render(request,'dashboard.html')
+
+def logoutpage(request):
+    logout(request)
+    return redirect('loginpage')
+
 
 
 @login_required
