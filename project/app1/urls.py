@@ -11,7 +11,7 @@ urlpatterns = [
    path('update/<int:id>/', views.Editvisitor, name="editvisitor"),
    path('status/<int:id>/',views.st,name='st'),
    path('visitor/<int:id>/', views.visitor_detail, name='visitor_detail'),
-   path('report/',views.report,name='report')
-   
-
+   path('report/',views.report,name='report'),
+   path('dashboard/', views.dashboardPage, name='admin.dashboard'),
+ 
 ]

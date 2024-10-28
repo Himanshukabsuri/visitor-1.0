@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse,redirect
+from django.shortcuts import render,HttpResponse,get_object_or_404,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login,authenticate,logout
 from django.core.mail import send_mail
@@ -90,6 +90,7 @@ def report(request):
     visitor = Visitor.objects.all()
     visitor_count = visitor.count()
     visitors_this_month = visitor.filter(date__month=today.month, date__year=today.year).count()
+   
     
     # Retrieve search and filter values
     search = request.GET.get('search')
@@ -122,3 +123,21 @@ def report(request):
         'visitors_this_month': visitors_this_month,
         'search': search,
     })
+def dashboardPage(request):
+    total_visitors = Visitor.objects.all().count()
+    return render(request, 'dashboard.html',{'total_visitors':total_visitors})
+# @login_required
+# def checked_in(request):
+#     checked_in = Visitor.objects.filter(status='check-in').count()  
+#     total_visitors = Visitor.objects.all().count()
+#     return render(request, 'dashboard.html', {'checked_in': checked_in,' total_visitors':total_visitors})
+
+# @login_required
+# def checked_out(request,id):
+#     visit = get_object_or_404(Visitor,id=id)
+#     if request.method == "POST":
+#         visit.status = 'check-out'
+#         visit.save()
+#         messages.success(request,f"Visitor{visit.name} successfully checked out.")
+#         return render(request, 'dashboard.html')
+#     return render(request, 'checkout.html', {'visit': visit}) 
