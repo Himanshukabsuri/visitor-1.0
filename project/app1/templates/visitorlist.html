@@ -1,6 +1,14 @@
 {% extends 'base.html' %} {% load static %} {% block title %} ADD Visitor LIst
 {% endblock %}
 {% block content %}
+{% if messages %}
+    <div class="alert alert-success" role="alert">
+        {% for message in messages %}
+            <div>{{ message }}</div>
+        {% endfor %}
+    </div>
+{% endif %}
+
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -20,6 +28,7 @@
                                 <th class="text-muted">PHONE</th>
                                 <th class="text-muted">Date / Time</th>
                                 {% comment %} <th class="text-muted">Assign Dr.</th> {% endcomment %}
+                                <th class="text-muted">Check-Out</th>
                                 <th class="text-muted">Status</th>
                                 <th class="text-muted">•••</th>
                                 <th class="text-muted">EDIT</th>
@@ -27,29 +36,31 @@
                         </thead>
                         <tbody>
                             {% for visitor in visitors %}
-                            
-                            <tr>
-                                <td>{{ forloop.counter}}</td>
-                                <td><a href="#" class="link-reset fw-medium">{{visitor.name}}</a></td>
-                                <td>{{visitor.gender}}</td>
-                                <td>{{visitor.email}}</td>
-                                <td>
-                                    {{visitor.phone}}
-                                </td>
-                                {% comment %} <small class="text-muted">11:15 AM</small> {% endcomment %}
-                                <td>{{visitor.date}} </td>
-                                <td>
-                                    <a href="#javascript: void(0);" class="link-reset fw-medium">{{visitor.status}}</a>
-                                </td>
-                                <td><span class="badge bg-success-subtle text-success p-1">Completed</span></td>
-                                <td>
-                                    {% comment %} <a href="{% url 'editvisitor' visitor.id %}" class="text-muted fs-20"> <i class="ti ti-edit"></i></a> {% endcomment %}
-                                    <a href="{% url 'editvisitor' visitor.id %}">Edit</a>
-
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td><a href="{% url 'visitor_detail' visitor.id %}" class="link-reset fw-medium">{{ visitor.name }}</a></td>
+                                    <td>{{ visitor.gender }}</td>
+                                    <td>{{ visitor.email }}</td>
+                                    <td>{{ visitor.phone }}</td>
+                                    <td>{{ visitor.date }}</td>
+                                    <td>
+                                        {% if visitor.status == 'check-out' %}
+                                            {{ visitor.ctime }}
+                                        {% else %}
+                                            --
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'st' visitor.id %}" class="link-reset fw-medium">{{ visitor.status }}</a>
+                                    </td>
+                                    <td><span class="badge bg-success-subtle text-success p-1">Completed</span></td>
+                                    <td>
+                                        <a href="{% url 'editvisitor' visitor.id %}">Edit</a>
+                                    </td>
+                                </tr>
                             {% endfor %}
                         </tbody>
+                        
                     </table>
                 </div>
                 <div class="card-footer">

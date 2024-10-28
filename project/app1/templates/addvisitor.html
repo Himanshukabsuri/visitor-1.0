@@ -1,7 +1,13 @@
 {% extends 'base.html' %} {% load static %} {% block title %} ADD Visitor 
 {% endblock %}
  {% block content %}
-
+ {% if messages %}
+ <div class="alert alert-success" role="alert">
+     {% for message in messages %}
+         <div>{{ message }}</div>
+     {% endfor %}
+ </div>
+{% endif %}
 <div class="row">
   <div class="col-lg-4">
     <div class="card">
@@ -105,7 +111,7 @@
                               {% for todayvisitors in todayvisitor %}
                                 <tr>
                                     
-                                    <td><a href="#" class="link-reset fw-medium">{{todayvisitors.name}}</a></td>
+                                    <td><a href="{% url 'visitor_detail' todayvisitors.id %}" class="link-reset fw-medium">{{todayvisitors.name}}</a></td>
                                     <td>{{todayvisitors.gender}}</td>
                                     
                                     <td>

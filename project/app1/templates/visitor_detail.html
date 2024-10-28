@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Visitor Details {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow-lg">
+                <!-- Card Header -->
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0"><i class="bi bi-person-circle me-2"></i> Visitor Details</h4>
+                    <a href="{% url 'visitorlist' %}" class="btn btn-light btn-sm">
+                        <i class="bi bi-arrow-left-circle me-1"></i> Back to List
+                    </a>
+                </div>
+
+                <!-- Card Body -->
+                <div class="card-body">
+                    <!-- Visitor Information -->
+                    <div class="row mb-4">
+                        <div class="col-md-4 text-center">
+                            <i class="bi bi-person-badge-fill display-1 text-primary"></i>
+                        </div>
+                        <div class="col-md-8">
+                            <h5 class="text-dark mb-1">{{ visitor.name }}</h5>
+                            <p class="text-muted">{{ visitor.email }}</p>
+                            <p class="text-muted mb-0"><i class="bi bi-telephone-fill me-1"></i>{{ visitor.phone }}</p>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Visitor Details -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h6 class="text-uppercase text-secondary">Gender</h6>
+                            <p class="text-dark">
+                                {% if visitor.gender == "M" %} Male
+                                {% elif visitor.gender == "F" %} Female
+                                {% else %} Other
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-uppercase text-secondary">Date</h6>
+                            <p class="text-dark">{{ visitor.date|date:"d M, Y" }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h6 class="text-uppercase text-secondary">Discription</h6>
+                            <p class="text-dark">{{ visitor.discription }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-uppercase text-secondary">Status</h6>
+                            <p>
+                                {% if visitor.status == "check-in" %}
+                                    <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Checked In</span>
+                                {% elif visitor.status == "check-out" %}
+                                    <span class="badge bg-secondary"><i class="bi bi-box-arrow-right me-1"></i> Checked Out</span>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+
+                    {% if visitor.status == "check-out" %}
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <h6 class="text-uppercase text-secondary">Check-out Time</h6>
+                                <p class="text-dark">{{ visitor.ctime|date:"d M, Y, h:i A" }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Card Footer -->
+                {% comment %} <div class="card-footer d-flex justify-content-end">
+                    <a href="{% url 'edit_visitor' visitor.id %}" class="btn btn-outline-primary me-2">
+                        <i class="bi bi-pencil-square me-1"></i> Edit
+                    </a>
+                    <a href="{% url 'visitor_list' %}" class="btn btn-primary">
+                        <i class="bi bi-arrow-left"></i> Return to List
+                    </a>
+                </div> {% endcomment %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

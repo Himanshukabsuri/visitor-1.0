@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- Show the total visitor count -->
+<p>Total Visitors: {{ visitor_count }}</p>
+<p>This Month Visitor:{{visitors_this_month}}</p>
+
+<!-- Date Range Form -->
+<!-- Date Range Form -->
+<form method="GET" action="">
+    <label for="search">Search by Name:</label>
+    <input type="search" name="search" id="search" value="{{ search }}">
+    
+    <label for="start_date">Start Date:</label>
+    <input type="date" id="start_date" name="start_date" value="{{ start_date }}">
+    
+    <label for="end_date">End Date:</label>
+    <input type="date" id="end_date" name="end_date" value="{{ end_date }}">
+    
+    <label for="gender">Gender:</label>
+    <select id="gender" name="gender">
+        <option value="">All</option>
+        <option value="M" {% if selected_gender == "M" %}selected{% endif %}>Male</option>
+        <option value="F" {% if selected_gender == "F" %}selected{% endif %}>Female</option>
+        <option value="O" {% if selected_gender == "O" %}selected{% endif %}>Other</option>
+    </select>
+    
+    <button type="submit" class="btn btn-primary">Generate Report</button>
+</form>
+
+
+<!-- Display Filtered Visitor Data -->
+{% if visitor_date is not None %}
+    <h3>Filtered Visitors:</h3>
+    {% if visitor_date %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Gender</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for visitor in visitor_date %}
+                    <tr>
+                        <td>{{ visitor.name }}</td>
+                        <td>{{ visitor.email }}</td>
+                        <td>{{ visitor.phone }}</td>
+                        <td>{{ visitor.gender }}</td>
+                        <td>{{ visitor.date }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No visitors found for the selected filters.</p>
+    {% endif %}
+{% endif %}
+
+{% endblock %}
