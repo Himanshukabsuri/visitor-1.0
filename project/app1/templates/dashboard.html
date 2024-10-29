@@ -13,6 +13,11 @@
 </head>
 <body>
     <style>
+        .body{
+            color: black;
+            margin: 10px;
+            padding: 10px;
+        }
         .boxes{
         display: flex;
         margin-left: 100px;
@@ -26,7 +31,7 @@
         display: flex;
         height: 150px;
         width: 250px;
-        background-color:rgba(205, 205, 247, 0.24);
+        background-color:rgba(234, 234, 240, 0.649);
         border-radius: 10px;
         transition: transform 0.5s ease-in-out;
     }
@@ -46,6 +51,8 @@
         font-size: 25px;
     }
     </style>
+    <div class="body">
+        <h3> Welcome Back SuperUser &#x1f4aa</h3>
     <div class="boxes">
         <div class="box">
             <div>
@@ -71,7 +78,7 @@
             </div>
             <div>
                 <h3>Checked out</h3>
-                <p></p>
+                <p>{{ checked_out }}</p>
             </div>
         </div>
         <div class="box">
@@ -80,10 +87,16 @@
             </div>
             <div>
                 <h3>Today Visitors</h3>
-                <p></p>
+                <p>{{ today_visit }}</p>
             </div>
         </div>
     </div>
+    <div class="card">
+
+    </div>
+
+    </div>
+    
 </body>
 </html>
 

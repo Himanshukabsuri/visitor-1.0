@@ -121,23 +121,18 @@ def report(request):
         'selected_gender': selected_gender,
         'visitor_date': visitor_date,
         'visitors_this_month': visitors_this_month,
-        'search': search,
+        'search': search
     })
+@login_required
 def dashboardPage(request):
     total_visitors = Visitor.objects.all().count()
-    return render(request, 'dashboard.html',{'total_visitors':total_visitors})
-# @login_required
-# def checked_in(request):
-#     checked_in = Visitor.objects.filter(status='check-in').count()  
-#     total_visitors = Visitor.objects.all().count()
-#     return render(request, 'dashboard.html', {'checked_in': checked_in,' total_visitors':total_visitors})
-
-# @login_required
-# def checked_out(request,id):
-#     visit = get_object_or_404(Visitor,id=id)
-#     if request.method == "POST":
-#         visit.status = 'check-out'
-#         visit.save()
-#         messages.success(request,f"Visitor{visit.name} successfully checked out.")
-#         return render(request, 'dashboard.html')
-#     return render(request, 'checkout.html', {'visit': visit}) 
+    checked_in = Visitor.objects.all().filter(status='check-in').count()
+    checked_out = Visitor.objects.all().filter(status='check-out').count()
+    today = timezone.now().date()
+    today_visit = Visitor.objects.all().filter(date=today).count()
+    return render(request, 'dashboard.html',{
+        'total_visitors':total_visitors ,
+        'checked_in':checked_in,
+        'checked_out':checked_out,
+        'today_visit':today_visit
+        })
