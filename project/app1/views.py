@@ -75,7 +75,7 @@ def st(request, id):
     if visitor.status == 'check-in':
         visitor.status = "check-out"
         visitor.ctime = timezone.now()  
-    
+        
     
     visitor.save()
     messages.success(request,"Visitor successefully Check-out")

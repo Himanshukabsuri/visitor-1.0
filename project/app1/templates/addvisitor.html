@@ -62,19 +62,12 @@
             </select>
           </div>
         <div class="mb-2">
-          <button type="submit" class="btn btn-primary">ADD</button>
+          <button type="submit" class="btn btn-primary w-100">ADD</button>
 
            
         </div>
         </form>
-        <input
-          type="text"
-          class="form-control d-none"
-          data-provider="flatpickr"
-          data-date-format="d M, Y"
-          data-deafult-date="today"
-          data-inline-date="true"
-        />
+      
       </div>
       <!-- end card-body-->
     </div>
@@ -133,7 +126,13 @@
                                 
                                 
                                     <td>
-                                       <button class="btn btn-danger"> <a href="{% url 'st' todayvisitors.id %}" class="link-reset fw-medium">{{todayvisitors.status}}</a></button>
+                                      {% if todayvisitors.status == 'check-out' %}
+                                      <span class="badge bg-success">checkedout</span>
+                                      {% else %} 
+
+                               
+                                         <a href="{% url 'st' todayvisitors.id %}" class="btn btn-danger btn-sm">Check-out</a>
+                                       {% endif %}
                                     </td>
                                     
                                     
