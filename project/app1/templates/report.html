@@ -1,10 +1,21 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+<div style="text-align: center; background-color: #1a73e8; padding: 20px; border-radius: 8px; color: #ffffff; margin: 20px 0; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <h1 style="margin: 0; font-size: 28px; font-weight: 600;">Visitor Report</h1>
+    
+</div>
 
 <!-- Show the total visitor count -->
-<p>Total Visitors: {{ visitor_count }}</p>
-<p>This Month Visitor:{{visitors_this_month}}</p>
+<!-- <p>Total Visitors: {{ visitor_count }}</p>
+<p>This Month Visitor:{{visitors_this_month}}</p> -->
+
+<h4 style="color: #1a73e8; font-weight: bold; margin-bottom: 10px;">
+    Total Visitors: {{ visitor_count }}
+</h4>
+<h4 style="color: #28a745; font-weight: bold; margin-bottom: 20px;">
+    This Month Visitors: {{ visitors_this_month }}
+</h4>
 
 <!-- Date Range Form -->
 <!-- Date Range Form -->
