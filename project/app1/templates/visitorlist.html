@@ -55,7 +55,11 @@
                                         {% endif %}
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger" ><a href="{% url 'st' visitor.id %}" class="link-reset fw-medium">{{ visitor.status }}</a></button>
+                                        {% if visitor.status == 'check-out' %}
+                                        <span class="badge bg-success">checkedout</span>
+                                        {% else %}
+                                        <a href="{% url 'st' visitor.id %}" class="btn btn-danger btn-sm">Check-out</a>
+                                        {% endif %}
                                         
                                     </td>
                                     <td><span class="badge bg-success-subtle text-success p-1">Completed</span></td>

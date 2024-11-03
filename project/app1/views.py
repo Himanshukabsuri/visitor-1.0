@@ -71,15 +71,15 @@ def Editvisitor(request,id):
 def st(request, id):
     visitor = Visitor.objects.get(id=id)
     
-    
     if visitor.status == 'check-in':
         visitor.status = "check-out"
         visitor.ctime = timezone.now()  
-        
     
     visitor.save()
-    messages.success(request,"Visitor successefully Check-out")
-    return redirect('addvisitor')
+    messages.success(request, "Visitor successfully checked out")
+    
+    # Redirect to the referring page
+    return redirect(request.META.get('HTTP_REFERER', 'addvisitor'))
 
 def visitor_detail(request, id):
     visitor = Visitor.objects.get(id=id)
