@@ -156,7 +156,7 @@ def dashboardPage(request):
     bar_labels = ['Total Visitors', 'Checked In', 'Checked Out', 'Today\'s Visitors']
     bar_values = [total_visitors, checked_in, checked_out, today_visit]
 
-    plt.figure(figsize=(5, 5))
+    plt.figure(figsize=(10, 6))
     plt.bar(bar_labels, bar_values, color=['blue', 'green', 'orange', 'red'])
     plt.title('Visitor Statistics')
     plt.xlabel('Categories')
