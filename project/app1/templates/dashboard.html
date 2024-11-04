@@ -3,107 +3,140 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
 </head>
+
 <body>
     <style>
-        .body{
+        .body {
             color: black;
             margin: 10px;
             padding: 10px;
         }
-        .boxes{
-        display: flex;
-        margin-left: 10px;
-        width: 100%;
-        height: 200px;
-        margin-top: 50px;
-        gap: 30px;
-    }
-    
-    .box{
-        display: flex;
-        height: 150px;
-        width: 250px;
-        background-color:rgba(234, 234, 240, 0.649);
-        border-radius: 10px;
-        transition: transform 0.5s ease-in-out;
-    }
-    .box img{
-        margin-left: 10px;
-        margin-top: 40px;
-        height: 60px;
-        width: 60px;
-    }
-    .box h3{
-        text-align: center;
-        
-    }
-    .box p{
-        margin-top: 25px;
-        text-align: center;
-        font-size: 25px;
-    }
+
+        .boxes {
+            display: flex;
+            margin-left: 10px;
+            width: 100%;
+            height: 200px;
+            margin-top: 50px;
+            gap: 30px;
+        }
+
+        .box {
+            display: flex;
+            height: 150px;
+            width: 250px;
+            background-color: rgba(234, 234, 240, 0.649);
+            border-radius: 10px;
+            transition: transform 0.5s ease-in-out;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .box img {
+            margin-bottom: 10px;
+            height: 60px;
+            width: 60px;
+        }
+
+        .box h3 {
+            text-align: center;
+        }
+
+        .box p {
+            margin-top: 5px;
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .chart-container {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+
+        .chart-container h3 {
+            margin-bottom: 15px;
+        }
+
+        .chart {
+            display: inline-block;
+            margin: 0 auto;
+            max-width: 80%;
+        }
     </style>
-    <div style="text-align: center; background-color: #1a73e8; padding: 20px; border-radius: 8px; color: #ffffff; margin: 20px 0; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <div
+        style="text-align: center; background-color: #1a73e8; padding: 20px; border-radius: 8px; color: #ffffff; margin: 20px 0; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
         <h1 style="margin: 0; font-size: 28px; font-weight: 600;">Dashboard</h1>
-        
     </div>
     <div class="body">
-        <h3> Welcome Back SuperUser &#x1f4aa</h3>
-    <div class="boxes">
-        <div class="box">
-            <div>
-                <img src="https://images.vexels.com/content/135895/preview/executive-circle-icon-bafd5b.png" alt="">
+        <h3>Welcome Back SuperUser &#x1f4aa</h3>
+        <div class="boxes">
+            <div class="box">
+                <div>
+                    <img src="https://images.vexels.com/content/135895/preview/executive-circle-icon-bafd5b.png" alt="">
+                </div>
+                <div>
+                    <h3>Total Visitors</h3>
+                    <p>{{ total_visitors }}</p>
+                </div>
             </div>
-            <div>
-                <h3>Total Visitors</h3>
-                <p> {{ total_visitors }}</p>
+            <div class="box">
+                <div>
+                    <img src="https://images.vexels.com/content/135895/preview/executive-circle-icon-bafd5b.png" alt="">
+                </div>
+                <div>
+                    <h3>Checked in</h3>
+                    <p>{{ checked_in }}</p>
+                </div>
+            </div>
+            <div class="box">
+                <div>
+                    <img src="https://images.vexels.com/content/135895/preview/executive-circle-icon-bafd5b.png" alt="">
+                </div>
+                <div>
+                    <h3>Checked out</h3>
+                    <p>{{ checked_out }}</p>
+                </div>
+            </div>
+            <div class="box">
+                <div>
+                    <img src="https://images.vexels.com/content/135895/preview/executive-circle-icon-bafd5b.png" alt="">
+                </div>
+                <div>
+                    <h3>Today Visitors</h3>
+                    <p>{{ today_visit }}</p>
+                </div>
             </div>
         </div>
-        <div class="box">
-            <div>
-                <img src="https://images.vexels.com/content/135895/preview/executive-circle-icon-bafd5b.png" alt="">
+
+
+        <div class="row">
+            <div class="col-6">
+                <div class="card" style="text-align:center; margin-top: 30px;">
+                    <h3>Check-in vs Check-out Visitors</h3>
+                    <img src="data:image/png;base64,{{ pie_image }}" alt="Check-in vs Check-out Visitors">
+                </div>
             </div>
-            <div>
-                <h3>Checked in</h3>
-                <p>{{ checked_in }}</p>
-            </div>
-        </div>
-        <div class="box">
-            <div>
-                <img src="https://images.vexels.com/content/135895/preview/executive-circle-icon-bafd5b.png" alt="">
-            </div>
-            <div>
-                <h3>Checked out</h3>
-                <p>{{ checked_out }}</p>
+            <div class="col-6">
+                <div class="card" style="text-align:center; margin-top: 30px;">
+                    <h3>Visitor Statistics</h3>
+                    <img src="data:image/png;base64,{{ bar_image }}" alt="Visitor Statistics">
+                </div>
             </div>
         </div>
-        <div class="box">
-            <div>
-                <img src="https://images.vexels.com/content/135895/preview/executive-circle-icon-bafd5b.png" alt="">
-            </div>
-            <div>
-                <h3>Today Visitors</h3>
-                <p>{{ today_visit }}</p>
-            </div>
-        </div>
-    </div>
-    <div class="card">
+
 
     </div>
-
-    </div>
-    
 </body>
+
 </html>
-
-
-
 {% endblock %}
