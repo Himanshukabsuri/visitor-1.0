@@ -128,3 +128,15 @@ STATIC_ROOT=os.path.join(BASE_DIR,"static")
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'loginpage'  # This should match your login path
+
+
+# settings.py
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # e.g., 'smtp.gmail.com' for Gmail
+EMAIL_PORT = 587  # 465 for SSL or 587 for TLS
+EMAIL_USE_TLS = True  # True for TLS, False if using SSL
+EMAIL_HOST_USER = 'sagarthapliyal9720@gmail.com'
+EMAIL_HOST_PASSWORD = 'rqmr lqym gbba zlpx'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+

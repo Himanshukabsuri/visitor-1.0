@@ -2,11 +2,13 @@ from django.shortcuts import render,HttpResponse,get_object_or_404,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login,authenticate,logout
 from django.core.mail import send_mail
-from .models import Visitor
+from .models import Visitor,Sub
 from django.utils import timezone
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
 
 def loginPage(request):
     if request.method == "POST":
@@ -124,8 +126,11 @@ def report(request):
         'search': search
     })
 import matplotlib.pyplot as plt
+from io import BytesIO
 import io
 import base64
+import matplotlib
+matplotlib.use('Agg')
 
 @login_required
 def dashboardPage(request):
@@ -179,4 +184,30 @@ def dashboardPage(request):
         'pie_image': pie_image,
         'bar_image': bar_image,
     })
+
+
+
+
+# views.py
+
+
+
+def sub_view(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+
+        # Save the data to the database
+        subs = Sub(name=name, email=email)
+        subs.save()
+
+        # Send the email
+        subject = "Welcome to Our Service!"
+        message = f"Hello {name},\n\nThank you for signing up! We're excited to have you."
+        recipient_list = [email]
+
+        send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipient_list)
+
+    return render(request, 'subs.html')
+
 
