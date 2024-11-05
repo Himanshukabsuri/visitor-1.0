@@ -140,7 +140,7 @@ def dashboardPage(request):
     pie_values = [checked_in, checked_out]
 
     plt.figure(figsize=(5, 5))
-    plt.pie(pie_values, labels=pie_labels, autopct='%1.1f%%', startangle=90, colors=['yellow ', 'red'])
+    plt.pie(pie_values, labels=pie_labels, autopct='%1.1f%%', startangle=90, colors=['yellow', 'red'])
     plt.title('Check-in vs Check-out Visitors')
 
     # Save the pie chart to a BytesIO object
@@ -156,7 +156,7 @@ def dashboardPage(request):
     bar_labels = ['Total Visitors', 'Checked In', 'Checked Out', 'Today\'s Visitors']
     bar_values = [total_visitors, checked_in, checked_out, today_visit]
 
-    plt.figure(figsize=(6, 5))
+    plt.figure(figsize=(5,5))
     plt.bar(bar_labels, bar_values, color=['blue', 'green', 'orange', 'red'])
     plt.title('Visitor Statistics')
     plt.xlabel('Categories')
