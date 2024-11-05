@@ -191,6 +191,11 @@ def dashboardPage(request):
 # views.py
 
 
+from django.core.mail import send_mail
+from django.shortcuts import render
+from django.conf import settings
+from django.contrib import messages
+from .models import Sub  # Make sure to import your Sub model
 
 def sub_view(request):
     if request.method == "POST":
@@ -206,8 +211,13 @@ def sub_view(request):
         message = f"Hello {name},\n\nThank you for signing up! We're excited to have you."
         recipient_list = [email]
 
-        send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipient_list)
+        try:
+            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipient_list)
+            messages.success(request, "Thank you! Your email has been sent.")
+        except Exception as e:
+            messages.error(request, f"Failed to send email: {e}")
 
     return render(request, 'subs.html')
+
 
 
