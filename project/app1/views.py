@@ -192,32 +192,57 @@ def dashboardPage(request):
 
 
 from django.core.mail import send_mail
-from django.shortcuts import render
 from django.conf import settings
 from django.contrib import messages
-from .models import Sub  # Make sure to import your Sub model
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Sub
 
 def sub_view(request):
+    subs = Sub.objects.all()  # Retrieve all visitors for display
+
     if request.method == "POST":
         name = request.POST.get("name")
         email = request.POST.get("email")
 
-        # Save the data to the database
-        subs = Sub(name=name, email=email)
-        subs.save()
+        # Save the new visitor data to the database
+        sub = Sub(name=name, email=email)
+        sub.save()
 
-        # Send the email
-        subject = "Welcome to Our Service!"
-        message = f"Hello {name},\n\nThank you for signing up! We're excited to have you."
-        recipient_list = [email]
+    return render(request, 'subs.html', {'subs': subs})
 
-        try:
-            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipient_list)
-            messages.success(request, "Thank you! Your email has been sent.")
-        except Exception as e:
-            messages.error(request, f"Failed to send email: {e}")
+from django.core.mail import EmailMessage
+from django.conf import settings
+from django.contrib import messages
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Sub
 
-    return render(request, 'subs.html')
+def sendemail(request, id):
+    # Retrieve the visitor by ID or return 404 if not found
+    sub = get_object_or_404(Sub, id=id)
 
+    # Prepare email details
+    subject = "Welcome to Our Service!"
+    message = f"Hello {sub.name},\n\nThank you for signing up! We're excited to have you."
+    recipient_list = [sub.email]
+    
+    # Create the email
+    email = EmailMessage(
+        subject,
+        message,
+        settings.DEFAULT_FROM_EMAIL,
+        recipient_list,
+    )
+
+    # Attach a file
+    file_path = "C:\\Users\\sagar\\OneDrive\\Desktop\\D\\Ilika Internship Offer Letter.pdf" # Replace with the actual file path
+    try:
+        email.attach_file(file_path)  # Attach file from disk
+        email.send()  # Send the email
+        messages.success(request, "Thank you! Your email with attachment has been sent.")
+    except Exception as e:
+        messages.error(request, f"Failed to send email with attachment: {e}")
+
+    # Redirect back to the main view
+    return redirect('sub_view')
 
 

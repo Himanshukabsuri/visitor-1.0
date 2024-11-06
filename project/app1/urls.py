@@ -13,6 +13,6 @@ urlpatterns = [
    path('visitor/<int:id>/', views.visitor_detail, name='visitor_detail'),
    path('report/',views.report,name='report'),
    path('dashboard/', views.dashboardPage, name='admin.dashboard'),
-   path('sub/',views.sub_view,name="sub"),
- 
+   path('sub/', views.sub_view, name='sub_view'),
+    path('sendemail/<int:id>/', views.sendemail, name='sendemail'),
 ]
